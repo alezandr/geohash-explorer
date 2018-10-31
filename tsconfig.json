@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["es6", "dom"],
+        "module": "commonjs",
+        "sourceMap": true,
+        "removeComments": true
+    },
+
+    "include": [ "src/**/*" ],
+    "exclude": [ "node_modules", "**/*.spec.ts"],
+    "typeRoots": [
+        "./node_moduels/@types",
+        "./node_modules"
+    ]
+}
