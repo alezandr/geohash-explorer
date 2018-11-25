@@ -39,7 +39,7 @@ class ControlPanel extends R.Component<RouteComponentProps<any> & ControlPanelPr
 
     render() {
         const geohash = this.props.geohash
-        const geohashVlidationResults = Utils.validateGeohash(geohash)
+        const geohashVlidationResults = Utils.validateGeohash(geohash.toLowerCase())
 
         let inputFieldClassName = ''
         let errorPopupClassName = ''

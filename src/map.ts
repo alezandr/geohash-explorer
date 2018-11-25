@@ -54,7 +54,7 @@ class Map extends R.Component<RouteComponentProps<any> & MapProps> {
     }
 
     private updateView() {
-        const targetArea = this.gridManager.displayGrid(this.props.geohash)
+        const targetArea = this.gridManager.displayGrid(this.props.geohash.toLowerCase())
         if (this.props.history.location.state && this.props.history.location.state['submit']) {
             debug(`Map.updateView(): fitBounds(${JSON.stringify(targetArea)})`)
 
