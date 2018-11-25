@@ -30,8 +30,8 @@ class Map extends R.Component<RouteComponentProps<any> & MapProps> {
         this.map.setView(new L.LatLng(18, 0), 2)
         // this.map.setView(this.props.display.area)
         // let copyright = new L.TileLayer('http://localhost:9999/{z}/{x}/{y}.png', {
-            let copyright = new L.TileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            let copyright = new L.TileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
         })
         this.map.removeControl(this.map['attributionControl'])
         L.control.attribution({ position: 'bottomleft' }).addTo(this.map)
