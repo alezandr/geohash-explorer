@@ -1,24 +1,16 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack'); //to access built-in plugins
-var MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
-
-// const merge = require('webpack-merge');
-
-// module.exports = merge({}, {
-//     mode: 'production',
-// });
 
 module.exports = {
     entry: './src/app.ts',
     output: {
         path: path.resolve(__dirname, 'build', 'dist'),
-        filename: '[name]-[contenthash].js',
-        // sourceMapFilename: '[file].map'
+        filename: '[name]-[contenthash].js'
     },
-
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.css'],
         modules: [
@@ -26,7 +18,6 @@ module.exports = {
             path.resolve(__dirname, 'node_modules')
         ]
     },
-
     module: {
         rules: [
             {
@@ -68,19 +59,14 @@ module.exports = {
         })
     ],
     optimization: {
-        // minimizer: [{
-        //     drop_console: true,
-        // }]
-
-        // moduleIds: 'size'
         minimizer: [
             new UglifyJsPlugin({
                 uglifyOptions: {
-                    
                     compress: {
                         global_defs: {
                             DEBUG: false
-                        }
+                        },
+                        drop_console: true
                     },
                     output: {
                         beautify: false,

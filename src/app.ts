@@ -1,3 +1,6 @@
+// Copyright 2019 Alexander Berezovsky
+// License: http://opensource.org/licenses/MIT
+
 import 'leaflet/dist/leaflet.css'
 import './assets/default.css'
 
@@ -9,7 +12,6 @@ import { Router, Route, RouteComponentProps } from 'react-router'
 import ControlPanel from './control-panel'
 import Map from './map'
 import './globals'
-// import { debug } from './types'
 
 class App extends R.Component<RouteComponentProps<any>> {
 
@@ -21,12 +23,12 @@ class App extends R.Component<RouteComponentProps<any>> {
     }
 
     onGeohashChanged(geohash: string) {
-        console.log(`DEBUG - InnerApp.onGeohashSubmited(geohash: '${geohash}')`)
+        debug(`InnerApp.onGeohashSubmited(geohash: '${geohash}')`)
         this.historyUpdate(geohash)
     }
 
     onGeohashSubmited(geohash: string) {
-        console.log(`DEBUG - InnerApp.onGeohashSubmited(geohash: '${geohash}')`)
+        debug(`InnerApp.onGeohashSubmited(geohash: '${geohash}')`)
         this.historySubmit(geohash)
     }
 
@@ -63,14 +65,12 @@ class App extends R.Component<RouteComponentProps<any>> {
     }
 }
 
-export const history: History = createBrowserHistory()
-// console.log(`DEBUG - init history L(${history.length}: ${JSON.stringify(history)}`)
-debug(`!!!!!!!!!!!! init history L[${history.length}]: ${JSON.stringify(history)}`)
+const history: History = createBrowserHistory()
+debug(`Init history L[${history.length}]: ${JSON.stringify(history)}`)
 
 history.replace(history.location.pathname, { submit: true })
-
 history.listen((location: Location<any>, action: Action) => {
-    debug(`history: L('${history.length}') A('${action}')=>` + JSON.stringify(location))
+    debug(`History: L('${history.length}') A('${action}')=>` + JSON.stringify(location))
 })
 
 ReactDOM.render(

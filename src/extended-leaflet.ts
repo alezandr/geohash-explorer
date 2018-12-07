@@ -1,3 +1,6 @@
+// Copyright 2019 Alexander Berezovsky
+// License: http://opensource.org/licenses/MIT
+
 import * as L from 'leaflet'
 
 interface Cell {
@@ -10,12 +13,18 @@ interface Cell {
 export let ExtendSVG = L.SVG.extend({
     initialize(options) {
         L.Renderer.prototype['initialize'].call(this, options);
+        this._msie = window.navigator.userAgent.indexOf['MSIE '] >= 0 
+                || !!navigator.userAgent.match(/Trident.*rv\:11\./);
     },
 
     _initPath: function (layer) {
         L.SVG.prototype['_initPath'].call(this, layer);
         var label = layer._label = L.SVG.create('text');
-        label.innerHTML = layer['_text'] ? layer['_text'] : 'W'
+        if (this._msie) {
+            label['textContent'] = layer['_text'] ? layer['_text'] : 'W';
+        } else {
+            label.innerHTML = layer['_text'] ? layer['_text'] : 'W';
+        }
     },
 
     _addPath: function (layer) {
@@ -32,7 +41,6 @@ export let ExtendSVG = L.SVG.extend({
         let label = layer._label
         label.setAttribute('class', "geohash-cell-label")
         label.setAttribute('visibility', 'visible')
-        // label.attribu
 
         label.setAttribute('x', style.x)
         label.setAttribute('y', style.y)
@@ -41,7 +49,6 @@ export let ExtendSVG = L.SVG.extend({
         label.setAttribute('dominant-baseline', 'middle')
         label.setAttribute('font-size', style.fontSize)
         label.setAttribute('fill-opacity', style.opacity)
-
     },
 
     _updateLabel: function (layer: L.Layer & { _parts, _label }) {
@@ -49,8 +56,8 @@ export let ExtendSVG = L.SVG.extend({
             let label = layer._label
 
             const cell: Cell = this._calcCell(layer._parts)
-            debug(`ExtendLeaflet._updateLabel() cell - '${label.innerHTML}', 
-                    size: '${JSON.stringify(cell)}, parts: ${JSON.stringify(layer._parts)}`)
+            // debug(`ExtendLeaflet._updateLabel() cell - '${label.innerHTML}', 
+            //         size: '${JSON.stringify(cell)}, parts: ${JSON.stringify(layer._parts)}`)
             if (cell.width > 300) {
                 label.setAttribute('visibility', 'visible')
 
@@ -155,19 +162,4 @@ export let ExtendSVG = L.SVG.extend({
             midX, midY, width, height
         }
     }
-
-    // _onZoom() {
-    //     console.log("DEBUG: ExtendSVG._onZoom()")
-    //     L.Renderer.prototype['_onZoom'].call(this)
-    // },
-
-    // _onZoomStart() {
-    //     // console.log("DEBUG: ExtendSVG._onZoomStart()")
-    //     L.SVG.prototype['_onZoomStart'].call(this)
-    // },
-
-    // _onZoomEnd() {
-    //     // console.log("DEBUG: ExtendSVG._onZoom()")
-    //     L.SVG.prototype['_onZoomEnd'].call(this)
-    // }
 })

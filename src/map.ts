@@ -1,3 +1,6 @@
+// Copyright 2019 Alexander Berezovsky
+// License: http://opensource.org/licenses/MIT
+
 import * as L from 'leaflet'
 import * as R from 'react'
 import { Grid, GridTarget } from './grid-manager'
@@ -11,7 +14,6 @@ interface MapProps {
     onGeohashSubmited?: (string) => void
 }
 
-// class Map extends R.Component<MapProps & RR.DispatchProp<Actions> & RouteComponentProps<MapRouteParam>> {
 class Map extends R.Component<RouteComponentProps<any> & MapProps> {
 
     private element: HTMLElement
@@ -62,10 +64,7 @@ class Map extends R.Component<RouteComponentProps<any> & MapProps> {
                 const [[startLat, startLng], [endLat, endLng]] = targetArea
                 this.fitBounds({ start: { lat: startLat, lng: startLng }, end: { lat: endLat, lng: endLng } })
             } else {
-                
-                // this.fitBounds ({start: {lat: 90, lng: -180}, end: {lat: -90, lng: 180}})
                 this.fitBounds({ start: { lat: 70, lng: -160 }, end: { lat: -60, lng: 160 } })
-                // this.map.fitWorld()
             }
         }
     }

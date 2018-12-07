@@ -68,7 +68,7 @@ body {
     background-clip: padding-box;
 
     border: 4px solid #fff;
-    border-radius: 0.5rem;
+    /* border-radius: 0.5rem; */
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -120,7 +120,7 @@ body {
     font-weight: 400;
     line-height: 24px;
 
-    border-radius: .25rem;
+    /* border-radius: .25rem; */
     border-style: solid;
     border-width: 2px;
 
@@ -139,12 +139,23 @@ body {
     pointer-events: none !important
 }
 
-.geohash-cell-label {    
-    animation-name: 'githash-label-hideshow';
+.geohash-cell-label {
+    -ms-animation-name: geohash-label-hideshow;
+    -ms-animation-duration: 1s;
+    
+    -webkit-animation-name:geohash-label-hideshow;
+    -webkit-animation-duration: 1s;
+
+    animation-name: geohash-label-hideshow;
     animation-duration: 1s;
 }
 
-@keyframes githash-label-hideshow {
+@keyframes geohash-label-hideshow {
+    0% { opacity: 0;}
+    100% { opacity: 1;}
+}
+
+@-ms-keyframes geohash-label-hideshow {
     0% { opacity: 0;}
     100% { opacity: 1;}
 }

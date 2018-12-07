@@ -1,3 +1,6 @@
+// Copyright 2019 Alexander Berezovsky
+// License: http://opensource.org/licenses/MIT
+
 import * as L from 'leaflet'
 import { ExtendSVG } from './extended-leaflet'
 
@@ -51,7 +54,7 @@ export class Grid {
     displayGrid(geohash: string = "", offset: number = 0): L.LatLngBoundsLiteral {
         
         if (this.rectangle) {
-            debug(` Grid.displayGrid(geohash=${geohash}, offset=${offset}) do remove rectangle`)
+            debug(`Grid.displayGrid(geohash=${geohash}, offset=${offset}) do remove rectangle`)
             this.remove()
         }
 
@@ -60,7 +63,6 @@ export class Grid {
         if (Grid.GEOHASH_ODD_DICT.indexOf(geohash.charAt(offset)) === -1) {
             this.rectangle = L.rectangle(this.area)
             this.rectangle.setStyle({
-                // className: 'geohash-cell-error',
                 className: 'disable-pointer-events',
                 color: '#dc3545',
                 fillOpacity: 0.3,

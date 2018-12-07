@@ -1,0 +1,28 @@
+build/
+.gradle/
+bin/
+cache/
+out/
+
+.attach_pid*
+
+# Eclipse 
+.settings/
+.classpath
+.project
+
+# webdev
+npm-debug.log
+node_modules/
+coverage/
+profile.json
+package-lock.json
+
+# vim
+*.swp
+
+# idea
+*.idea/
+*.iml
+*.ipr
+*.iws

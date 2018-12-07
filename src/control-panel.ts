@@ -1,8 +1,10 @@
+// Copyright 2019 Alexander Berezovsky
+// License: http://opensource.org/licenses/MIT
+
 import * as R from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 import Popover, { PopoverProps } from 'react-tiny-popover'
 import * as Utils from './utils'
-// import { debug } from './types'
 
 interface ControlPanelProps {
     geohash: string

@@ -1,3 +1,6 @@
+// Copyright 2019 Alexander Berezovsky
+// License: http://opensource.org/licenses/MIT
+
 import { LatLngArea, LatLngPoint } from './types'
 
 export const GEOHASH_EVEN_DICT = "bcfguvyz89destwx2367kmqr0145hjnp"
@@ -26,9 +29,8 @@ export function geohashToArea(geohash: string): LatLngArea {
         return { start: { lat: 72, lng: -180 }, end: { lat: -72, lng: 180 } }
     }
 
-    for (let i = 0, length = geohash.length,
-        latSectionDeg = 180, lngSectionDeg = 360,
-        latOffset = 90, lngOffset = -180;
+    for (let i = 0,
+        length = geohash.length, latSectionDeg = 180, lngSectionDeg = 360, latOffset = 90, lngOffset = -180;
         i < length; i++) {
 
         const odd = i % 2
